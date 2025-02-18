@@ -1,0 +1,110 @@
+<h1 class="text-center mt-5">Currency Hub</h1>
+
+<div class="mt-4">
+    <h2 class="text-center mb-5">Bem-vindo ao seu painel financeiro em tempo real!</h2>
+
+    <div class="card mt-4 p-3 shadow-sm"  *ngIf="dadosFinance?.results">
+        <div class="card-body">
+
+            <!-- Seção: Cotações de Moedas -->
+            <div class="row fs-5">
+                <div class="card-body row col-sm-8 pe-md-5">
+                    <h3 class="text-center pb-2 mb-4 border-bottom">Cotações de Moedas</h3>
+
+                    <div class="col-sm-6 pe-md-5">
+                        <p class="border-bottom pb-2">Dólar: {{ dadosFinance.results.currencies.USD.buy | currency:'USD':'symbol'}}
+                            <span [ngStyle]="{'color': getCorVariacao(dadosFinance.results.currencies.USD.variation)}">
+                                ({{ dadosFinance.results.currencies.USD.variation }}%)
+                            </span>
+                        </p>
+
+                        <p class="border-bottom pb-2">Euro: {{ dadosFinance.results.currencies.EUR.buy | currency:'EUR':'symbol'}} 
+                            <span [ngStyle]="{'color': getCorVariacao(dadosFinance.results.currencies.EUR.variation)}">
+                                ({{ dadosFinance.results.currencies.EUR.variation }}%)
+                            </span>
+                        </p>
+
+                        <p class="border-bottom pb-2">Libra Esterlina: {{ dadosFinance.results.currencies.GBP.buy | currency:'GBP':'symbol'}}
+                            <span [ngStyle]="{'color': getCorVariacao(dadosFinance.results.currencies.GBP.variation)}">
+                                ({{ dadosFinance.results.currencies.GBP.variation }}%)
+                            </span>
+                        </p>
+
+                        <p class="border-bottom pb-2">Peso Argentino: {{ dadosFinance.results.currencies.ARS.buy | currency:'ARS':'symbol'}}
+                            <span [ngStyle]="{'color': getCorVariacao(dadosFinance.results.currencies.ARS.variation)}">
+                                ({{ dadosFinance.results.currencies.ARS.variation }}%)
+                            </span>
+                        </p>
+
+                        <p class="border-bottom pb-2">Dólar Canadense: {{ dadosFinance.results.currencies.CAD.buy | currency:'CAD':'symbol'}}
+                            <span [ngStyle]="{'color': getCorVariacao(dadosFinance.results.currencies.CAD.variation)}">
+                                ({{ dadosFinance.results.currencies.CAD.variation }}%)
+                            </span>
+                        </p>
+                    </div>
+
+                    <div class="col-sm-6 pe-0">
+                        <p class="border-bottom pb-2">Dólar Australiano: {{ dadosFinance.results.currencies.AUD.buy |
+                            currency:'AUD':'symbol'}}
+                            <span [ngStyle]="{'color': getCorVariacao(dadosFinance.results.currencies.AUD.variation)}">
+                                ({{ dadosFinance.results.currencies.AUD.variation }}%)
+                            </span>
+                        </p>
+
+                        <p class="border-bottom pb-2">Iene Japonês: {{ dadosFinance.results.currencies.JPY.buy | currency:'JPY':'symbol'}}
+                            <span [ngStyle]="{'color': getCorVariacao(dadosFinance.results.currencies.JPY.variation)}">
+                                ({{ dadosFinance.results.currencies.JPY.variation }}%)
+                            </span>
+                        </p>
+
+                        <p class="border-bottom pb-2">Yuan Chinês: {{ dadosFinance.results.currencies.CNY.buy | currency:'CNY':'symbol'}}
+                            <span [ngStyle]="{'color': getCorVariacao(dadosFinance.results.currencies.CNY.variation)}">
+                                ({{ dadosFinance.results.currencies.CNY.variation }}%)
+                            </span>
+                        </p>
+
+                        <p class="border-bottom pb-2">Bitcoin: {{ dadosFinance.results.currencies.BTC.buy | currency:'BTC':'symbol'}}
+                            <span [ngStyle]="{'color': getCorVariacao(dadosFinance.results.currencies.BTC.variation)}">
+                                ({{ dadosFinance.results.currencies.BTC.variation }}%)
+                            </span>
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Seção: Taxas de Juros -->
+                <div class="card-body col-sm-4">
+                    <h3 class="text-center pb-2 mb-4 border-bottom">Taxas de Juros do Brasil</h3>
+                    <div class="ps-md-5">
+                        <p class="border-bottom pb-2">CDI: {{ dadosFinance.results.taxes[0]?.cdi }}%</p>
+                        <p class="border-bottom pb-2">Selic: {{ dadosFinance.results.taxes[0]?.selic }}%</p>
+                        <p class="border-bottom pb-2">CDI Diário: {{ dadosFinance.results.taxes[0]?.cdi_daily }}%</p>
+                        <p class="border-bottom pb-2">Selic Diário: {{ dadosFinance.results.taxes[0]?.selic_daily }}%</p>
+                        <p class="border-bottom pb-2">Fator Diário: {{ dadosFinance.results.taxes[0]?.daily_factor }}%</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Botão de atualização -->
+            <div class="d-grid gap-2 col-5 pt-4 mx-auto">
+                <button class="btn btn-secondary fs-5 fw-bold" (click)="atualizarDadosFinanceiros()">Atualizar Dados</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Seção: Explicação das Taxas -->
+    <div class="card my-5 p-4 fs-5 shadow-sm">
+        <h3 class="text-center pb-3">O que são essas taxas?</h3>
+        <p class="text-justify">
+            As taxas financeiras exibidas acima são atualizadas em tempo real com base nos dados do mercado brasileiro.
+            O <strong>CDI (Certificado de Depósito Interbancário)</strong> e a <strong>Selic (taxa básica de
+                juros)</strong>
+            são indicadores essenciais para investimentos e financiamentos, influenciando diretamente a economia.
+        </p>
+        <p class="text-justify">
+            As cotações monetárias mostram o valor de compra de diversas moedas em relação ao <strong>Real Brasileiro
+                (BRL)</strong>,
+            permitindo que você acompanhe o mercado de câmbio de maneira simples e prática.
+        </p>
+    </div>
+    
+</div>

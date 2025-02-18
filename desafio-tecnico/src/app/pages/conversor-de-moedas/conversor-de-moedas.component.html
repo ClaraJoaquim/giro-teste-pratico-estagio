@@ -1,0 +1,81 @@
+<h1 class="text-center my-5">Conversor de Moedas</h1>
+
+<!-- Formulário para conversão de moedas -->
+<form [formGroup]="FormularioConversao" (ngSubmit)="converter()" class="card">
+    
+    <div class="card-body shadow-sm p-5">
+        <div class="row g-3 align-items-end">
+
+            <!-- Campo para inserção do valor a ser convertido -->
+            <div class="col-md-2">
+                <label for="valor" class="form-label fs-5">Valor</label>
+                <div class="input-group">
+                    <span class="input-group-text">
+                        <i class="bi bi-currency-dollar"></i>
+                    </span>
+                    <input type="number" class="form-control" id="valor" placeholder="0.00" formControlName="valor">
+                </div>
+            </div>
+        
+            <!-- Seleção da moeda de origem -->
+            <div class="col-md-3">
+                <label for="moedaOrigem" class="form-label fs-5">Moeda de Origem</label>
+                <select class="form-select" formControlName="moedaOrigem">
+                    <option value="BRL">Real (BRL)</option>
+                    <option value="USD">Dólar (USD)</option>
+                    <option value="EUR">Euro (EUR)</option>
+                    <option value="GBP">Libra Esterlina (GBP)</option>
+                    <option value="ARS">Peso Argentino (ARS)</option>
+                    <option value="CAD">Dólar Canadense (CAD)</option>
+                    <option value="AUD">Dólar Australiano (AUD)</option>
+                    <option value="JPY">Iene Japonês (JPY)</option>
+                    <option value="CNY">Yuan Chinês (CNY)</option>
+                    <option value="BTC">Bitcoin (BTC)</option>
+                </select>
+            </div>
+        
+            <!-- Botão para inverter as moedas -->
+            <div class="col-md-2 d-flex justify-content-center">
+                <button type="button" class="btn btn-secondary" (click)="inverterMoedas()">
+                    <i class="bi bi-arrow-left-right"></i> 
+                    Trocar Moedas
+                </button>
+            </div>
+        
+            <!-- Seleção da moeda de destino -->
+            <div class="col-md-3">
+                <label for="moedaDestino" class="form-label fs-5">Moeda de Destino</label>
+                <select class="form-select" formControlName="moedaDestino">
+                    <option value="BRL">Real (BRL)</option>
+                    <option value="USD">Dólar (USD)</option>
+                    <option value="EUR">Euro (EUR)</option>
+                    <option value="GBP">Libra Esterlina (GBP)</option>
+                    <option value="ARS">Peso Argentino (ARS)</option>
+                    <option value="CAD">Dólar Canadense (CAD)</option>
+                    <option value="AUD">Dólar Australiano (AUD)</option>
+                    <option value="JPY">Iene Japonês (JPY)</option>
+                    <option value="CNY">Yuan Chinês (CNY)</option>
+                    <option value="BTC">Bitcoin (BTC)</option>
+                </select>
+            </div>
+        
+            <!-- Botão para realizar a conversão -->
+            <div class="col-md-2 d-flex justify-content-center">
+                <button type="submit" class="btn btn-secondary">
+                    <i class="bi bi-arrow-repeat"></i> 
+                    Converter
+                </button>
+            </div>
+        </div>
+        
+        <!-- Área para exibir o resultado da conversão -->
+        <div class="d-flex justify-content-center mt-3">
+            <div class="card my-3" style="width: 30rem;">
+                <div class="card-body text-center">
+                    <h4 class="card-title pb-2 text-center border-bottom">Conversão</h4>
+                    <p class="fs-5 pt-3">{{ resultadoConversao }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
